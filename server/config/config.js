@@ -38,17 +38,28 @@ const optConnectMongoose = {
 // HEADERS
 //============================
 
-const allowCrossDomain = (req, res, next) =>{ 
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type'); 
-    next();
-}
+
+
+//============================
+// VENCIMIENTO DEL TOKEN
+//============================
+// 60 seg
+// 60 min
+// 24 hs
+// 30 d
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+
+//============================
+// SEED DE AUTENTICACION
+//============================
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo'
+
 
 //============================
 // MODULE EXPORTS
 //============================
 module.exports = {
-    allowCrossDomain,
+    
     optConnectMongoose
 }
